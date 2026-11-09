@@ -5,7 +5,7 @@
       "id": "Bitunix-full-agentic",
       "name": "Bitunix-full-agentic",
       "root": "",
-      "buildSystem": "native",
+      "buildSystem": "gradle-compat",
       "settings": {},
       "modules": [
         {
