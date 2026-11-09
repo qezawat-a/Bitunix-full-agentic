@@ -50,15 +50,14 @@ implementation = ["androidx.activity:activity-compose:1.13.0", "androidx.compose
 
 [android]
 namespace = "com.aibt.app"
-compileSdk = 36
+compileSdk = 34
 minSdk = 26
-targetSdk = 26
+targetSdk = 34
 manifest = "src/main/AndroidManifest.xml"
 versionCode = 1
 versionName = "1.0"
 isApplication = true
 manifestPlaceholders = []
 buildConfigFields = []
-buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"] }]
+buildTypes = [{ name = "debug", debuggable = true, minifyEnabled = false, shrinkResources = false, signingConfig = "aabt" }, { name = "release", debuggable = false, minifyEnabled = false, shrinkResources = false, proguardFiles = ["proguard-android-optimize.txt", "proguard-rules.pro"], signingConfig = "aabt" }]
 compose = true
-buildConfig = false
