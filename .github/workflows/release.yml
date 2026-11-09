@@ -1,0 +1,48 @@
+name: Build Release APK
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: 21
+
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      - name: Build release APK
+        run: ./gradlew :aibt:assembleRelease
+
+      - name: Upload release APK as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-apk
+          path: aibt/build/outputs/apk/release/aibt-release.apk
+          retention-days: 30
+
+      - name: Create GitHub Release and upload APK
+        if: github.event_name == 'push' && (startsWith(github.ref, 'refs/tags/') || github.ref == 'refs/heads/main')
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ github.run_number }}
+          tag_name: ${{ github.ref_name }}
+          files: aibt/build/outputs/apk/release/aibt-release.apk
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

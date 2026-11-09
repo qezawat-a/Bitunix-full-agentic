@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "projects": [
+    {
+      "id": "Bitunix-full-agentic",
+      "name": "Bitunix-full-agentic",
+      "root": "",
+      "buildSystem": "native",
+      "settings": {},
+      "modules": [
+        {
+          "id": "aibt",
+          "name": "aibt",
+          "dir": "aibt"
+        }
+      ],
+      "libraries": []
+    }
+  ]
+}
